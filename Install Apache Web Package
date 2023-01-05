@@ -1,0 +1,19 @@
+---
+- name: Install Apache Web Package
+  hosts: 192.168.142.145
+  tasks:
+    - name: Install Apache Web Package
+      yum:
+        name: httpd
+        state: latest
+      register: httpd_install
+    - debug:
+        var: httpd_install
+    - name: Ensure apache is running
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+      register: httpd_service
+    - debug:
+        var: httpd_service
