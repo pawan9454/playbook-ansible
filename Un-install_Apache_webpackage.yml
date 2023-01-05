@@ -1,0 +1,8 @@
+---
+  - name : uninstall apache web package
+    hosts : all
+    tasks :
+      - name : uninstall httpd
+        yum :
+          name : httpd
+          state : absent
