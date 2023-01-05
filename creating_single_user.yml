@@ -1,0 +1,9 @@
+---
+  - name : Creating Single user
+    hosts : 192.168.142.145
+    tasks :
+      - name : creating dbadmin user
+        user :
+          name : dbadmin
+          uid : 6002
+          state : present
