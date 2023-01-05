@@ -1,0 +1,10 @@
+---
+  - name : Setting up web server
+    hosts : 192.168.142.145
+    tasks :
+      - name: Installing apache package
+        yum :
+          name : httpd
+          state : latest
+          
+      
