@@ -1,0 +1,32 @@
+---
+  - name : Installing,starting and enabling apache, postfix and NTP services
+    hosts : all
+    tasks:
+       - name : Task-1 (Installing apache server)
+         yum :
+            name : httpd
+            state : latest
+       - name : Task-2 (Installing postfix server)
+         yum :
+            name : postfix
+            state : latest
+       - name : Task-3 (Installing NTP Server)
+         yum :
+            name : chrony
+            state : latest
+       - name : Task-4 ( starting and enabling httpd Service)
+         service :
+            name : httpd
+            state : started
+            enabled : true
+       - name : Task-5 ( starting and enabling postfix service)
+         service :
+            name : postfix
+            state : started
+            enabled : true
+       - name : Task-6 ( Starting amd enabling NTP service)
+         service : 
+            name : chronyd
+            state : started
+            enabled : true
+
