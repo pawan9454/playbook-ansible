@@ -1,0 +1,18 @@
+---
+  - name : Setting up the apache web server with index.html file
+    hosts : all
+    tasks : 
+      - name : Task-1 ( Installing apache-server)
+        yum :
+          name : httpd
+          state : latest
+      - name : Task-2 ( copying index.html file)
+        copy : 
+          src : /my_web/index.html
+          dest : /var/www/html/index.html
+      - name : Task-3 (starting and enabling apache server)
+        service :
+          name : httpd
+          state : started
+          enabled : true
+         
