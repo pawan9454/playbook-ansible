@@ -1,0 +1,18 @@
+---
+  - name : Uninstalling apache, postfix and NTP services
+    hosts : all
+    tasks:
+       - name : Task-1 (uninstalling apache server)
+         yum :
+            name : httpd
+            state : absent
+       - name : Task-2 (uninstalling postfix server)
+         yum :
+            name : postfix
+            state : absent
+       - name : Task-3 (unistalling NTP Server)
+         yum :
+            name : chrony
+            state : absent
+       
+
