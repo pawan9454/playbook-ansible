@@ -1,0 +1,24 @@
+--- 
+  - name : Play-1 (Setting-up DNS Server)
+    hosts : all
+    tasks : 
+      - name : Task-1 of play-1 (Installing of DNS package)
+        yum :
+          name : bind
+          state : latest
+      - name : Task-2 of play-1 ( Starting and enabling DNS server)
+        service :
+          name: named
+          state : started
+          enabled : true
+  - name : Play-2 ( Updating /etc/hosts file by ansadmin)
+    hosts : all
+    remote_user : ansadmin
+    become : true
+    tasks : 
+      - name : Task-1 of play-2 (Updating /etc/hosts file)
+        lineinfile :
+          path : /etc/hosts
+          line : '192.168.142.146'
+          state : present 
+     
