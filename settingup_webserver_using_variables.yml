@@ -1,0 +1,40 @@
+---
+  - name : setting up webserver using varibales
+    hosts : 
+      - 192.168.142.145
+    remote_user : ansadmin
+    become : true
+    vars :
+      web_pkg : httpd
+      firewall_pkg : firewalld
+      web_srv : httpd
+      firewall_srv : firewalld
+      rule : http
+    tasks : 
+      - name : Task-1 (Installing the pkg using variables)
+        yum :
+          name :
+            - "{{web_pkg}}"
+            - "{{firewall_pkg}}"
+          state : latest
+      - name : Task-2 (definig the rule using varibale)
+        firewalld :
+           port : 80/tcp
+           permanent : yes
+           state : enabled
+           immediate : yes
+      - name : Task-3 ( starting the {{web_srv}})
+        service :
+          name : "{{web_srv}}"
+          state : started
+          enabled : true
+      - name : Task-4 ( starting the {{firewall_srv}})
+        service :
+          name : "{{firewall_srv}}"
+          state : started
+          enabled : true
+      - name : Task-5 ( Defining index.html file)
+        copy :
+          content : " This is playbook created using variables"
+          dest : /var/www/html/index.html
+         
