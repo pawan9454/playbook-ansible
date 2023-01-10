@@ -1,0 +1,34 @@
+---
+  - name : uninstall-the apache web server
+    hosts : 
+      - 192.168.142.145
+    remote_user : ansadmin
+    become : true
+    tasks :
+     # - name : Task-1 ( unstalling Apache,firewall and nettool packages)
+     #   yum :
+     #     name :
+     #       - httpd
+     #       - firewalld
+     #       - net-tools
+     # - name : Task-2 ( Defining index.html file )
+     #   copy :
+     #     content : "Welcome to my Ansible training"
+     #     dest : /var/www/html/index.html
+     # - name : Task-3 (defining the rule in firewall)
+     #   firewalld :
+     #     port : 80/tcp
+     #     state : enabled
+     #     permanent : true
+     #     immediate : yes
+      - name : Task-4 ( Stopping apache service)
+        service : 
+          name : httpd
+          state : stopped
+          enabled : false
+      - name : Task-5 (stopping firewall service)
+        service :
+          name : firewalld
+          enabled : false
+          state : stopped
+
