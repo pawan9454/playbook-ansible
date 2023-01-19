@@ -1,0 +1,25 @@
+---
+ - name : Setting up the Apache Server
+   hosts : all
+   gather_facts : false
+   remote_user : ansadmin
+   become : true
+   tasks : 
+     - name : Task-1 (Installing httpd package)
+       yum :
+         name : httpd
+         state : latest
+       notify : restart httpd
+     - name : Task-2 (Configure index.html)
+       copy :
+         content : " This is Ansible developed by Pawan Bhagat for practice purpose 9730068090"
+         dest : /var/www/html/index.html
+       notify : restart httpd
+   handlers :
+     - name : restart httpd
+       service :
+         name : httpd
+         state : restarted
+         enabled : yes
+   
+     
