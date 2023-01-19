@@ -1,0 +1,16 @@
+---
+  - name : Install some set of packages using loop
+    hosts :
+      - 192.168.142.145
+    remote_user : ansadmin
+    become : true
+    tasks :
+       - name : Installing DB|N/W Tools|disk utility and mail server
+         yum :
+           name : "{{item}}"
+           state : latest
+         loop :
+           - mysql
+           - net-tools
+           - sysstat
+           - dovecot

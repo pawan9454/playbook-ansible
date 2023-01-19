@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+   - name: Poweroff all machines
+     command: poweroff
+     async: 1
+     poll: 0
+     ignore_errors: true
+
+      
